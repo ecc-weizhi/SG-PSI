@@ -70,7 +70,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.action_refresh:
-                mPresenter.onRefreshClick();
+                if(mLoadingOverlay.getVisibility() == View.GONE){
+                    mPresenter.onRefreshClick();
+                }
                 return true;
 
             default:
