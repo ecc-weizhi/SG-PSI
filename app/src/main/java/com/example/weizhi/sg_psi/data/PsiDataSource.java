@@ -2,8 +2,6 @@ package com.example.weizhi.sg_psi.data;
 
 import android.support.annotation.NonNull;
 
-import com.example.weizhi.sg_psi.network.response.PsiJson;
-
 import java.util.List;
 
 /**

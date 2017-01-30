@@ -2,7 +2,7 @@ package com.example.weizhi.sg_psi.ui.map;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,8 +14,6 @@ import android.widget.Toast;
 import com.example.weizhi.sg_psi.R;
 import com.example.weizhi.sg_psi.SgPsiApplication;
 import com.example.weizhi.sg_psi.data.RegionInfo;
-import com.example.weizhi.sg_psi.network.response.PsiJson;
-import com.example.weizhi.sg_psi.util.PsiJsonParser;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,7 +25,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
-        MapContract.View{
+        MapContract.View,
+        BottomNavigationView.OnNavigationItemSelectedListener{
     private static final int SHOW_PSI = 1;
     private static final int SHOW_POLLUTANT = 2;
 
@@ -43,7 +42,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // find view references
         mLoadingOverlay = (FrameLayout) findViewById(R.id.loading_overlay);
+        BottomNavigationView mBottomMenu = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
+        // set view properties
+        mBottomMenu.setOnNavigationItemSelectedListener(this);
 
         mPresenter = new MapPresenter(this, SgPsiApplication.getPsiRepository());
 
@@ -146,7 +150,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             @NonNull RegionInfo regionInfo,
                             int showType){
         if(regionInfo.lat != 0 && regionInfo.lng != 0){
-            String snippet = null;
+            String snippet;
             switch(showType){
                 case SHOW_PSI:
                     snippet = getString(R.string.data_item_psi, regionInfo.getPsiTwentyFourHourly());
@@ -162,7 +166,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             .append("\n")
                             .append(getString(R.string.data_item_ozone, regionInfo.getOzoneEightHourMax()))
                             .append("\n")
-                            .append(getString(R.string.data_item_carbon_monoxide, regionInfo.getCarbonMonoxideEightHourMax()))
+                            .append(getString(R.string.data_item_carbon_monoxide, String.format(Locale.US, "%.2f", regionInfo.getCarbonMonoxideEightHourMax())))
                             .append("\n")
                             .append(getString(R.string.data_item_pm25, regionInfo.getPm25TwentyFourHourly()));
                     snippet = sb.toString();
@@ -180,6 +184,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     .snippet(snippet);
 
             googleMap.addMarker(marker);
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_psi:
+                mPresenter.onPsiSelect();
+                return true;
+
+            case R.id.action_pollutant:
+                mPresenter.onPollutantSelect();
+                return true;
+
+            default: return false;
         }
     }
 }

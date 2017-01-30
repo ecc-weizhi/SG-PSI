@@ -26,10 +26,9 @@ public class WebServiceImpl implements WebService {
     public static final String API_KEY = "X8Z3mrlg3HAbp9Vk5dglhHPeUfhIah1J";
     public static final String BASE_URL = "https://api.data.gov.sg/";
     private final RetrofitWs webService;
-    private final ObjectMapper mapper;
 
     public WebServiceImpl(String baseUrl){
-        mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)

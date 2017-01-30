@@ -3,7 +3,6 @@ package com.example.weizhi.sg_psi.busevent;
 import android.support.annotation.Nullable;
 
 import com.example.weizhi.sg_psi.data.RegionInfo;
-import com.example.weizhi.sg_psi.network.response.PsiJson;
 
 import java.util.List;
 

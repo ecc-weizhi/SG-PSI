@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_psi"
+        android:enabled="true"
+        android:icon="@drawable/ic_cloud_queue_white_24dp"
+        android:title="@string/action_title_psi"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_pollutant"
+        android:enabled="true"
+        android:icon="@drawable/ic_blur_on_white_24dp"
+        android:title="@string/action_title_pollutant"
+        app:showAsAction="ifRoom" />
+</menu>

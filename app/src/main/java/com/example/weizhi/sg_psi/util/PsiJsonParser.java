@@ -9,9 +9,7 @@ import com.example.weizhi.sg_psi.network.response.ReadingsJson;
 import com.example.weizhi.sg_psi.network.response.RegionMetadataJson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Lin Weizhi (ecc.weizhi@gmail.com)

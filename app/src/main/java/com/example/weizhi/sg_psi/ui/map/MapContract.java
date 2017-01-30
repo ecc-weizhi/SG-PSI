@@ -3,7 +3,6 @@ package com.example.weizhi.sg_psi.ui.map;
 import android.support.annotation.NonNull;
 
 import com.example.weizhi.sg_psi.data.RegionInfo;
-import com.example.weizhi.sg_psi.network.response.PsiJson;
 
 import java.util.List;
 
@@ -24,5 +23,7 @@ public interface MapContract {
         void onStart();
         void onMapReady();
         void onRefreshClick();
+        void onPsiSelect();
+        void onPollutantSelect();
     }
 }

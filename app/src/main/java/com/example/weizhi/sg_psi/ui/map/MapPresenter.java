@@ -44,6 +44,18 @@ public class MapPresenter implements MapContract.ActionListener,
     }
 
     @Override
+    public void onPsiSelect() {
+        setShowType(SHOW_PSI);
+        getPsi();
+    }
+
+    @Override
+    public void onPollutantSelect() {
+        setShowType(SHOW_POLLUTANT);
+        getPsi();
+    }
+
+    @Override
     public void onPsiLoaded(@NonNull List<RegionInfo> regionInfoList) {
         mView.showLoading(false);
         switch(mShowType){

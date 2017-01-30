@@ -5,7 +5,6 @@ import com.example.weizhi.sg_psi.busevent.GetPsiEvent;
 import com.example.weizhi.sg_psi.data.PsiDataSource;
 import com.example.weizhi.sg_psi.data.RegionInfo;
 import com.example.weizhi.sg_psi.data.RemotePsiDataSource;
-import com.example.weizhi.sg_psi.network.response.PsiJson;
 import com.squareup.otto.Bus;
 
 import org.junit.Test;
