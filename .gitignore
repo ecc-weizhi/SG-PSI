@@ -7,3 +7,12 @@
 /build
 /captures
 .externalNativeBuild
+
+# Keystore files
+*.jks
+
+# Keystore secrets
+release.properties
+
+# apikey secrets
+apikey.properties
