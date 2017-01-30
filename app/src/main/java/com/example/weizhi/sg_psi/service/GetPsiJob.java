@@ -8,8 +8,12 @@ import com.birbit.android.jobqueue.Params;
 import com.birbit.android.jobqueue.RetryConstraint;
 import com.example.weizhi.sg_psi.SgPsiApplication;
 import com.example.weizhi.sg_psi.busevent.GetPsiEvent;
+import com.example.weizhi.sg_psi.data.RegionInfo;
 import com.example.weizhi.sg_psi.network.NetworkResponse;
 import com.example.weizhi.sg_psi.network.response.PsiJson;
+import com.example.weizhi.sg_psi.util.PsiJsonParser;
+
+import java.util.List;
 
 import timber.log.Timber;
 
@@ -48,7 +52,9 @@ public class GetPsiJob extends Job {
             Timber.i("getPsi WS response success");
 
             PsiJson psiJson = result.payload;
-            SgPsiApplication.getBusInstance().post(new GetPsiEvent(GetPsiEvent.SUCCESS, psiJson));
+            List<RegionInfo> regionInfoList = PsiJsonParser.parse(psiJson);
+            SgPsiApplication.getBusInstance()
+                    .post(new GetPsiEvent(GetPsiEvent.SUCCESS, regionInfoList));
         }
         else {
             // fail

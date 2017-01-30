@@ -36,7 +36,7 @@ public class RemotePsiDataSource implements PsiDataSource{
         if(mCallback != null){
             switch (event.status){
                 case GetPsiEvent.SUCCESS:
-                    mCallback.onPsiLoaded(event.psiJson);
+                    mCallback.onPsiLoaded(event.regionInfoList);
                     break;
 
                 case GetPsiEvent.ERROR_NETWORK:

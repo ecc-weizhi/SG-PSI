@@ -2,23 +2,25 @@ package com.example.weizhi.sg_psi.data;
 
 import android.support.annotation.NonNull;
 
-import com.example.weizhi.sg_psi.network.response.PsiJson;
+import java.util.List;
 
 /**
  * @author Lin Weizhi (ecc.weizhi@gmail.com)
  */
 
-public class PsiRepository implements PsiDataSource{
+public class PsiRepository implements PsiDataSource, PsiDataSource.GetPsiCallback{
     private static final int CACHE_TIMEOUT = 90000; // 15 minutes
 
     private static PsiRepository mInstance;
 
     // A simple memory cache for psi information.
-    private PsiJson mCache;
+    private List<RegionInfo> mCache;
     private Long mCacheLastUpdate;
     private boolean mIsCacheDirty = false;
 
     private final PsiDataSource mRemoteSource;
+
+    private GetPsiCallback mCurrentCallback;
 
     private PsiRepository(@NonNull PsiDataSource remoteSource){
         mRemoteSource = remoteSource;
@@ -30,6 +32,10 @@ public class PsiRepository implements PsiDataSource{
         }
 
         return mInstance;
+    }
+
+    public void forceRefresh(){
+        mIsCacheDirty = true;
     }
 
     public static void destroyInstance() {
@@ -49,10 +55,33 @@ public class PsiRepository implements PsiDataSource{
 
         // Fetch new Psi data if cache is dirty or cache is null.
         if(mIsCacheDirty || mCache == null){
-            mRemoteSource.getPsi(callback);
+            mCurrentCallback = callback;
+            mRemoteSource.getPsi(this);
         }
         else{
             callback.onPsiLoaded(mCache);
+        }
+    }
+
+    @Override
+    public void onPsiLoaded(@NonNull List<RegionInfo> regionInfoList) {
+        mCache = regionInfoList;
+        mCacheLastUpdate = System.nanoTime();
+        mIsCacheDirty = false;
+        if(mCurrentCallback != null){
+            mCurrentCallback.onPsiLoaded(regionInfoList);
+            mCurrentCallback = null;
+        }
+    }
+
+    @Override
+    public void onDataNotAvailable(int reason) {
+        mCache = null;
+        mCacheLastUpdate = null;
+        mIsCacheDirty = false;
+        if(mCurrentCallback != null){
+            mCurrentCallback.onDataNotAvailable(reason);
+            mCurrentCallback = null;
         }
     }
 }

@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">SG-PSI</string>
     <string name="action_refresh">Refresh</string>
+
+    <!--MapActivity UI-->
+    <string name="data_item_psi">PSI: %1$d</string>
+    <string name="data_item_ozone">8-hr Ozone(\u00B5g/m\u00B3): %1$d</string>
+    <string name="data_item_pm10">24-hr PM\u2081\u2080(\u00B5g/m\u00B3): %1$d</string>
+    <string name="data_item_pm25">24-hr PM\u2082\u2085(\u00B5g/m\u00B3): %1$d</string>
+    <string name="data_item_carbon_monoxide">8-hr Carbon monoxide(mg/m\u00B3): %1$d</string>
+    <string name="data_item_sulphur_dioxide">24-hr Sulphur dioxide(\u00B5g/m\u00B3): %1$d</string>
+    <string name="data_item_nitrogen_dioxide">1-hr Nitrogen dioxide(\u00B5g/m\u00B3): %1$d</string>
 </resources>
