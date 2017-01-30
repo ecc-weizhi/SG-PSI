@@ -7,6 +7,8 @@ import com.birbit.android.jobqueue.JobManager;
 import com.birbit.android.jobqueue.config.Configuration;
 import com.birbit.android.jobqueue.scheduling.FrameworkJobSchedulerService;
 import com.birbit.android.jobqueue.scheduling.GcmJobSchedulerService;
+import com.example.weizhi.sg_psi.data.PsiRepository;
+import com.example.weizhi.sg_psi.data.RemotePsiDataSource;
 import com.example.weizhi.sg_psi.network.WebService;
 import com.example.weizhi.sg_psi.network.WebServiceImpl;
 import com.example.weizhi.sg_psi.service.GcmJobService;
@@ -26,6 +28,7 @@ public class SgPsiApplication extends Application {
     private static SgPsiApplication mContext;
     private static Bus mBus;
     private static WebService mWebService;
+    private static PsiRepository mPsiRepository;
 
     @Override
     public void onCreate(){
@@ -39,6 +42,8 @@ public class SgPsiApplication extends Application {
         getBusInstance().register(this);
         mWebService = new WebServiceImpl(WebServiceImpl.BASE_URL);
         getJobManager();// ensure it is created
+        mPsiRepository = PsiRepository.getInstance(
+                new RemotePsiDataSource(getBusInstance(), getJobManager()));
     }
 
     public static SgPsiApplication getInstance(){
@@ -82,4 +87,9 @@ public class SgPsiApplication extends Application {
 
         return mBus;
     }
+
+    public static PsiRepository getPsiRepository(){
+        return  mPsiRepository;
+    }
+
 }
