@@ -1,3 +1,5 @@
 googleMapApiKeyDebug=yourGoogleMapApiKeyForDebug
 
 googleMapApiKeyRelease=yourGoogleMapApiKeyForRelease
+
+sgDataGovApiKey=yourGovDataKey

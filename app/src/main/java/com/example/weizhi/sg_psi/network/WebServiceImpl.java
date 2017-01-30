@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.example.weizhi.sg_psi.network.response.PsiJson;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
@@ -23,13 +22,13 @@ import timber.log.Timber;
 
 public class WebServiceImpl implements WebService {
     public static final int API_VERSION = 1;
-    public static final String API_KEY = "X8Z3mrlg3HAbp9Vk5dglhHPeUfhIah1J";
     public static final String BASE_URL = "https://api.data.gov.sg/";
     private final RetrofitWs webService;
 
-    public WebServiceImpl(String baseUrl){
-        ObjectMapper mapper = new ObjectMapper();
+    private final String mApiKey;
 
+    public WebServiceImpl(String baseUrl, String apiKey){
+        mApiKey = apiKey;
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(JacksonConverterFactory.create())
@@ -40,7 +39,7 @@ public class WebServiceImpl implements WebService {
     @NonNull
     @Override
     public NetworkResponse<PsiJson> getPsi(@Nullable String dateTime, @Nullable String date) {
-        Call<PsiJson> call = webService.getPsi(API_VERSION, API_KEY, dateTime, date);
+        Call<PsiJson> call = webService.getPsi(API_VERSION, mApiKey, dateTime, date);
 
         PsiJson payload = null;
         Integer httpStatusCode = null;

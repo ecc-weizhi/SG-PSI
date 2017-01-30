@@ -40,7 +40,7 @@ public class SgPsiApplication extends Application {
         }
 
         getBusInstance().register(this);
-        mWebService = new WebServiceImpl(WebServiceImpl.BASE_URL);
+        mWebService = new WebServiceImpl(WebServiceImpl.BASE_URL, getString(R.string.sg_gov_data_key));
         getJobManager();// ensure it is created
         mPsiRepository = PsiRepository.getInstance(
                 new RemotePsiDataSource(getBusInstance(), getJobManager()));
