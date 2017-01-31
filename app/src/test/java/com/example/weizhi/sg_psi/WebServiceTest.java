@@ -1,9 +1,9 @@
 package com.example.weizhi.sg_psi;
 
-import com.example.weizhi.sg_psi.network.NetworkResponse;
-import com.example.weizhi.sg_psi.network.WebService;
-import com.example.weizhi.sg_psi.network.WebServiceImpl;
-import com.example.weizhi.sg_psi.network.response.PsiJson;
+import com.weizhi.sg_psi.network.NetworkResponse;
+import com.weizhi.sg_psi.network.WebService;
+import com.weizhi.sg_psi.network.WebServiceImpl;
+import com.weizhi.sg_psi.network.response.PsiJson;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 

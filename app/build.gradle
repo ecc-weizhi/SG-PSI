@@ -7,7 +7,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "24.0.3"
     defaultConfig {
-        applicationId "com.example.weizhi.sg_psi"
+        applicationId "com.weizhi.sg_psi"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

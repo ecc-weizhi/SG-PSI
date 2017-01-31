@@ -1,10 +1,10 @@
 package com.example.weizhi.sg_psi;
 
 import com.birbit.android.jobqueue.JobManager;
-import com.example.weizhi.sg_psi.busevent.GetPsiEvent;
-import com.example.weizhi.sg_psi.data.PsiDataSource;
-import com.example.weizhi.sg_psi.data.RegionInfo;
-import com.example.weizhi.sg_psi.data.RemotePsiDataSource;
+import com.weizhi.sg_psi.busevent.GetPsiEvent;
+import com.weizhi.sg_psi.data.PsiDataSource;
+import com.weizhi.sg_psi.data.RegionInfo;
+import com.weizhi.sg_psi.data.RemotePsiDataSource;
 import com.squareup.otto.Bus;
 
 import org.junit.Test;

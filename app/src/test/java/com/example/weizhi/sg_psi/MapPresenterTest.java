@@ -1,9 +1,9 @@
 package com.example.weizhi.sg_psi;
 
-import com.example.weizhi.sg_psi.data.PsiRepository;
-import com.example.weizhi.sg_psi.data.RegionInfo;
-import com.example.weizhi.sg_psi.ui.map.MapContract;
-import com.example.weizhi.sg_psi.ui.map.MapPresenter;
+import com.weizhi.sg_psi.data.PsiRepository;
+import com.weizhi.sg_psi.data.RegionInfo;
+import com.weizhi.sg_psi.ui.map.MapContract;
+import com.weizhi.sg_psi.ui.map.MapPresenter;
 
 import org.junit.Test;
 
